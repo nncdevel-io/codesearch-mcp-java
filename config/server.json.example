@@ -1,0 +1,7 @@
+{
+  "_comment": "Startup parameters (optional). Copy to config/server.json. Resolution: --config > CODE_SEARCH_CONFIG_PATH > ./config/server.json. CLI flags override these.",
+  "transport": "stdio",
+  "host": "127.0.0.1",
+  "port": 8000,
+  "enable_scheduler": false
+}

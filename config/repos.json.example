@@ -1,0 +1,24 @@
+{
+  "_comment": "Repository catalog (required). Copy to config/repos.json and edit. Resolution: --repos > CODE_SEARCH_REPOS_PATH > ./config/repos.json",
+  "workspace_root": "./workspaces",
+  "secrets": "./config/secrets.json",
+  "repositories": [
+    {
+      "id": "main-app",
+      "remote": "https://github.com/example/main-app.git",
+      "branch": "main",
+      "hosting": "github",
+      "hosting_base_url": "https://github.com/example/main-app",
+      "refresh_interval_seconds": 900,
+      "exclude_paths": ["docs/generated/", "vendor/"],
+      "description": "Backend service for the main customer-facing app. Key dirs: billing/, auth/, models/."
+    },
+    {
+      "id": "internal-lib",
+      "remote": "git@github.com:example/internal-lib.git",
+      "branch": "develop",
+      "hosting": "github",
+      "hosting_base_url": "https://github.com/example/internal-lib"
+    }
+  ]
+}

@@ -53,7 +53,7 @@ Spring・サーブレットコンテナー・CLI のいずれにも依存させ�
 
 | モジュール | 役割 | 依存 |
 | --- | --- | --- |
-| `codesearch-mcp-core` | ツール・リソース・ドメインロジック。MCP の specification と部品を公開 | MCP Java SDK（core）／Jackson／tomlj |
+| `codesearch-mcp-core` | ツール・リソース・ドメインロジック。MCP の specification と部品を公開 | MCP Java SDK（core）／Jackson |
 | `codesearch-mcp-standalone` | 単独利用。CLI ＋ 組込みサーブレットコンテナー ＋ stdio | core |
 | `codesearch-mcp-spring-boot-starter` | Spring Boot 統合。自動構成で core を MCP サーバーへ登録 | core ＋ Spring Boot ＋ MCP Java SDK の Spring 連携 |
 
@@ -99,8 +99,6 @@ Spring 統合は **Spring Boot Starter（自動構成つき）** とする。依
   第一候補とするが、`HttpServletStreamableServerTransportProvider` の
   サーブレット API 名前空間（jakarta）とバージョン整合を一次情報で確認の
   うえ確定する。
-- **TOML パーサーの選定**: tomlj を第一候補とするが、TOML 1.0 準拠と
-  メンテナンス状況を一次情報で確認のうえ確定する。
 - **同期完了通知方式**（`SIGHUP` 相当）: JVM に標準のシグナル送受信 API が
   無いため、非標準シグナル API の利用／OS シグナル受信／ファイル監視への
   置換のいずれかを別 ADR で判断する。

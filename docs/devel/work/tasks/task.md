@@ -23,34 +23,34 @@
 
 | ID | Status | Summary | DependsOn |
 | --- | --- | --- | --- |
-| TASK-001 | ⏳ | 親POMと3モジュールのMavenマルチモジュール雛形を構築する | - |
-| TASK-002 | ⏳ | coreにJUnit5/Spotless/JaCoCoの検証環境を整備する | TASK-001 |
-| TASK-003 | ⏳ | 仕様書spec.mdを外部契約踏襲・TOML維持で作成する | - |
-| TASK-004 | ⏳ | ErrorCodeとToolError(エラーJSON生成)を実装する | TASK-002,TASK-003 |
-| TASK-005 | ⏳ | 相対パス検証(絶対/../拒否・正規化)を実装する | TASK-004 |
-| TASK-006 | ⏳ | ワークスペース封じ込めパス解決(realpath)を実装する | TASK-005 |
-| TASK-007 | ⏳ | 4ホスティングの単一行Git URL生成を実装する | TASK-004 |
-| TASK-008 | ⏳ | Git URLの行範囲アンカー生成とURLエンコードを実装する | TASK-007 |
-| TASK-009 | ⏳ | TOMLパーサーを選定しADRに記録する | TASK-001 |
-| TASK-010 | ⏳ | repos/secrets/serverの設定record(モデル)を実装する | TASK-003,TASK-007 |
-| TASK-011 | ⏳ | 設定ローダーと起動時検証(権限600含む)を実装する | TASK-010,TASK-009,TASK-004 |
-| TASK-012 | ⏳ | repos/secrets/serverの設定例ファイルを作成する | TASK-011 |
-| TASK-013 | ⏳ | 結合テスト用bare gitリモートfixtureを用意する | TASK-002 |
-| TASK-014 | ⏳ | RepositoryManager(状態/パス/同期状況)を実装する | TASK-010,TASK-004 |
-| TASK-015 | ⏳ | git cloneによる初期取得と認証処理を実装する | TASK-014,TASK-013 |
-| TASK-016 | ⏳ | git fetch/reset更新とリポジトリ単位障害分離を実装する | TASK-015 |
-| TASK-017 | ⏳ | Virtual Threadsベースのシェル非経由コマンドランナーを実装する | TASK-004 |
-| TASK-018 | ⏳ | ripgrep検索/列挙のargv構築を実装する | TASK-002 |
-| TASK-019 | ⏳ | ripgrep --json出力のマッチ抽出(Jackson)を実装する | TASK-018 |
-| TASK-020 | ⏳ | git ls-files実行バックエンドを実装する | TASK-017 |
-| TASK-021 | ⏳ | ツール入出力record(スキーマ)とToolContextを実装する | TASK-010,TASK-003 |
-| TASK-022 | ⏳ | read_fileの行番号整形とバイナリ/サイズ判定を実装する | TASK-021 |
-| TASK-023 | ⏳ | read_fileツール本体を実装する | TASK-022,TASK-006,TASK-008,TASK-014 |
-| TASK-024 | ⏳ | search_codeツール本体を実装する | TASK-019,TASK-017,TASK-008,TASK-014 |
-| TASK-025 | ⏳ | list_filesツール本体を実装する | TASK-019,TASK-017,TASK-008,TASK-014 |
-| TASK-026 | ⏳ | list_treeのASCIIツリー整形を実装する | TASK-021 |
-| TASK-027 | ⏳ | list_treeツール本体(git ls-files連携)を実装する | TASK-026,TASK-020,TASK-014 |
-| TASK-028 | ⏳ | 検索系ツールにexclude_pathsフィルターを適用する | TASK-024,TASK-025,TASK-027 |
+| TASK-001 | ✅ | 親POMと3モジュールのMavenマルチモジュール雛形を構築する | - |
+| TASK-002 | ✅ | coreにJUnit5/Spotless/JaCoCoの検証環境を整備する | TASK-001 |
+| TASK-003 | ✅ | 仕様書spec.mdを外部契約参照・JSON採用で作成する | - |
+| TASK-004 | ✅ | ErrorCodeとToolError(エラーJSON生成)を実装する | TASK-002,TASK-003 |
+| TASK-005 | ✅ | 相対パス検証(絶対/../拒否・正規化)を実装する | TASK-004 |
+| TASK-006 | ✅ | ワークスペース封じ込めパス解決(realpath)を実装する | TASK-005 |
+| TASK-007 | ✅ | 4ホスティングの単一行Git URL生成を実装する | TASK-004 |
+| TASK-008 | ✅ | Git URLの行範囲アンカー生成とURLエンコードを実装する | TASK-007 |
+| TASK-009 | ✅ | 設定形式(JSON/Jackson)を選定しADRに記録する | TASK-001 |
+| TASK-010 | ✅ | repos/secrets/serverの設定record(モデル)を実装する | TASK-003,TASK-007 |
+| TASK-011 | ✅ | 設定ローダーと起動時検証(権限600含む)を実装する | TASK-010,TASK-009,TASK-004 |
+| TASK-012 | ✅ | repos/secrets/serverの設定例ファイルを作成する | TASK-011 |
+| TASK-013 | ✅ | 結合テスト用bare gitリモートfixtureを用意する | TASK-002 |
+| TASK-014 | ✅ | RepositoryManager(状態/パス/同期状況)を実装する | TASK-010,TASK-004 |
+| TASK-015 | ✅ | git cloneによる初期取得と認証処理を実装する | TASK-014,TASK-013 |
+| TASK-016 | ✅ | git fetch/reset更新とリポジトリ単位障害分離を実装する | TASK-015 |
+| TASK-017 | ✅ | Virtual Threadsベースのシェル非経由コマンドランナーを実装する | TASK-004 |
+| TASK-018 | ✅ | ripgrep検索/列挙のargv構築を実装する | TASK-002 |
+| TASK-019 | ✅ | ripgrep --json出力のマッチ抽出(Jackson)を実装する | TASK-018 |
+| TASK-020 | ✅ | git ls-files実行バックエンドを実装する | TASK-017 |
+| TASK-021 | ✅ | ツール入出力record(スキーマ)とToolContextを実装する | TASK-010,TASK-003 |
+| TASK-022 | ✅ | read_fileの行番号整形とバイナリ/サイズ判定を実装する | TASK-021 |
+| TASK-023 | ✅ | read_fileツール本体を実装する | TASK-022,TASK-006,TASK-008,TASK-014 |
+| TASK-024 | ✅ | search_codeツール本体を実装する | TASK-019,TASK-017,TASK-008,TASK-014 |
+| TASK-025 | ✅ | list_filesツール本体を実装する | TASK-019,TASK-017,TASK-008,TASK-014 |
+| TASK-026 | ✅ | list_treeのASCIIツリー整形を実装する | TASK-021 |
+| TASK-027 | ✅ | list_treeツール本体(git ls-files連携)を実装する | TASK-026,TASK-020,TASK-014 |
+| TASK-028 | ✅ | 検索系ツールにexclude_pathsフィルターを適用する | TASK-024,TASK-025,TASK-027 |
 | TASK-029 | ⏳ | ツール実行ガード(並列セマフォ16/タイムアウト/エラー)を実装する | TASK-004 |
 | TASK-030 | ⏳ | list_repositoriesツールを実装する | TASK-014,TASK-021 |
 | TASK-031 | ⏳ | リポジトリResources(codesearch://repo/{id})を実装する | TASK-014,TASK-021 |
@@ -80,11 +80,11 @@
 ### TASK-003
 
 - 補足: 入出力スキーマ・エラーコード・Git URL・設定はPython版spec.mdを踏襲
-- 注意: 設定はTOML維持。配置先は docs/devel/specs/spec.md
+- 注意: 設定はJSON(Jackson)。設定互換は非目標。配置先は docs/devel/specs/spec.md
 
 ### TASK-011
 
-- 補足: 検証はTOMLパース・必須項目・id一意・hosting enum・秘密ファイル権限600
+- 補足: 検証はJSONパース・必須項目・id一意・hosting enum・秘密ファイル権限600
 - 注意: 違反時は起動を中止する
 
 ### TASK-015

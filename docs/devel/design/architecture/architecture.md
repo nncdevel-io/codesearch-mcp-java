@@ -16,7 +16,7 @@
 | 層分離 | core はフレームワーク非依存。ランタイムは差し替え可能 | 単独利用と Spring Boot 統合の両立。詳細は ADR-0001 |
 | 並行モデル | Virtual Threads ＋ Semaphore（上限16） | Python の asyncio ＋ セマフォの代替 |
 | 外部コマンド | `ProcessBuilder`（シェル非経由） | インジェクション耐性、並列走査の利得 |
-| 設定形式 | TOML を維持 | Python 版と設定互換 |
+| 設定形式 | JSON（Jackson） | 追加ライブラリー不要（Jackson は既存依存）。設定互換は目標としない |
 | Git 同期 | リクエストパスから完全分離 | 要件5.1／5.2と整合 |
 | テスト | TDD（テスト先行）。単体＋結合 | 利用者選択 |
 
@@ -36,7 +36,7 @@ codesearch-mcp-java/                     親POM
 
 ```text
 standalone ──────┐
-                 ├──▶ core ──▶ MCP Java SDK（core）／Jackson／tomlj
+                 ├──▶ core ──▶ MCP Java SDK（core）／Jackson
 spring-boot- ────┘
   starter
 ```
@@ -99,9 +99,8 @@ Bean として Spring AI MCP に登録する。
 
 - `AutoConfiguration` が `core` の `CapabilityProvider` を呼び、ツール／
   リソース specification を Bean として公開する。
-- 設定は Spring の `@ConfigurationProperties` で受けるか、`core` の TOML
-  ローダーへ委譲するかを実装時に決める（既定は TOML ローダー委譲で設定
-  互換性を保つ）。
+- 設定は Spring の `@ConfigurationProperties` で受けるか、`core` の JSON
+  ローダーへ委譲するかを実装時に決める（既定は `core` のローダーへ委譲）。
 - トランスポートは Spring AI MCP（webmvc／webflux）に委ねる。
 
 ## 5. データフロー（ツール呼び出し）
@@ -148,7 +147,7 @@ Bean として Spring AI MCP に登録する。
 | フェーズ | 内容 |
 | --- | --- |
 | P0 | 親POM ＋ core 雛形（Maven／JUnit／lint／カバレッジ） ＋ errors・pathsafe・giturl（純粋関数、完全 TDD） |
-| P1 | config モデル・読込・起動時検証 ＋ 設定例ファイル。TOML パーサー確定（ADR） |
+| P1 | config モデル・読込・起動時検証 ＋ 設定例ファイル。設定形式（JSON/Jackson）確定（ADR） |
 | P2 | RepositoryManager ＋ GitSync（clone／fetch／reset／認証／障害分離）＋ readiness |
 | P3 | CommandRunner（Virtual Threads）＋ ripgrep ラッパー |
 | P4 | tools（read_file → search_code → list_files → list_tree、各 TDD） |
@@ -165,3 +164,5 @@ Bean として Spring AI MCP に登録する。
   — MCP フレームワーク選定と層分離（core／standalone／spring-boot-starter）
 - `docs/devel/adr/0002-search-backend-ripgrep-subprocess.md`
   — 検索バックエンドに ripgrep サブプロセスを採用（in-JVM／FFI 代替を不採用）
+- `docs/devel/adr/0003-config-format-json.md`
+  — 設定形式に JSON（Jackson、追加依存ゼロ）を採用
