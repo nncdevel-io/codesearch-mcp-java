@@ -1,0 +1,18 @@
+{
+  // Project-wide markdownlint configuration.
+  // MD013 (line-length) is disabled to match the reference implementation
+  // family (codesearch-mcp-python) and because the task list format keeps
+  // マイルストーン / ゴール on a single line that necessarily exceeds 80 chars.
+  // MD024 (duplicate headings) is disabled because structured docs repeat
+  // labels such as "入力" / "出力" / "挙動".
+  "config": {
+    "MD013": false,
+    "MD024": false
+  },
+  "globs": [
+    "**/*.md"
+  ],
+  "ignores": [
+    "**/node_modules/**"
+  ]
+}
