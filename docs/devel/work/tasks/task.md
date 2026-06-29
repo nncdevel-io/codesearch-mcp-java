@@ -51,29 +51,29 @@
 | TASK-026 | ✅ | list_treeのASCIIツリー整形を実装する | TASK-021 |
 | TASK-027 | ✅ | list_treeツール本体(git ls-files連携)を実装する | TASK-026,TASK-020,TASK-014 |
 | TASK-028 | ✅ | 検索系ツールにexclude_pathsフィルターを適用する | TASK-024,TASK-025,TASK-027 |
-| TASK-029 | ⏳ | ツール実行ガード(並列セマフォ16/タイムアウト/エラー)を実装する | TASK-004 |
-| TASK-030 | ⏳ | list_repositoriesツールを実装する | TASK-014,TASK-021 |
-| TASK-031 | ⏳ | リポジトリResources(codesearch://repo/{id})を実装する | TASK-014,TASK-021 |
-| TASK-032 | ⏳ | CapabilityProvider(5ツール+Resources仕様生成)を実装する | TASK-023,TASK-024,TASK-025,TASK-027,TASK-028,TASK-029,TASK-030,TASK-031 |
-| TASK-033 | ⏳ | 構造化ログと秘密情報の秘匿を実装する | TASK-002 |
-| TASK-034 | ⏳ | 最終同期状況の参照機能(observability)を実装する | TASK-014 |
-| TASK-035 | ⏳ | 任意のin-process定期同期スケジューラーを実装する | TASK-016 |
-| TASK-036 | ⏳ | 同期完了通知方式を選定しADRに記録する | TASK-001 |
-| TASK-037 | ⏳ | 同期完了通知(serve再起動なし反映)を実装する | TASK-036,TASK-035 |
-| TASK-038 | ⏳ | DEBUG時にJSON-RPCを全文出力するtee傍受を実装する | TASK-033,TASK-032 |
-| TASK-039 | ⏳ | picocliによるserve/syncのCLIを実装する | TASK-032,TASK-011,TASK-035 |
-| TASK-040 | ⏳ | stdioトランスポートの端点間テストを通す | TASK-039,TASK-013 |
-| TASK-041 | ⏳ | 組込みサーブレットコンテナーを選定しADRに記録する | TASK-001 |
-| TASK-042 | ⏳ | Streamable HTTP(組込みJetty)トランスポートを配線する | TASK-041,TASK-039,TASK-032 |
-| TASK-043 | ⏳ | Streamable HTTPトランスポートの端点間テストを通す | TASK-042,TASK-013 |
-| TASK-044 | ⏳ | standalone実行可能成果物(uber-jar)をビルドする | TASK-039 |
-| TASK-045 | ⏳ | DEBUG時出力/INFO時非出力を端点間テストで検証する | TASK-038,TASK-040 |
-| TASK-046 | ⏳ | spring-boot-starterの自動構成でcoreを登録する | TASK-032 |
-| TASK-047 | ⏳ | spring-boot-starterの自動構成をtest sliceで検証する | TASK-046 |
-| TASK-048 | ⏳ | 性能スモーク(規模前提下のsearch_code 2秒未満)を実施する | TASK-040,TASK-043 |
-| TASK-049 | ⏳ | GitHub Actions CIでビルド/テスト/lintを強制する | TASK-002 |
-| TASK-050 | ⏳ | READMEと導入/運用ドキュメントを整備する | TASK-044,TASK-046 |
-| TASK-051 | ⏳ | 仕様適合チェックと要件カバレッジの自己レビューを実施する | TASK-045,TASK-047,TASK-048,TASK-050 |
+| TASK-029 | ✅ | ツール実行ガード(並列セマフォ16/タイムアウト/エラー)を実装する | TASK-004 |
+| TASK-030 | ✅ | list_repositoriesツールを実装する | TASK-014,TASK-021 |
+| TASK-031 | ✅ | リポジトリResources(codesearch://repo/{id})を実装する | TASK-014,TASK-021 |
+| TASK-032 | ✅ | CapabilityProvider(5ツール+Resources仕様生成)を実装する | TASK-023,TASK-024,TASK-025,TASK-027,TASK-028,TASK-029,TASK-030,TASK-031 |
+| TASK-033 | ✅ | 構造化ログと秘密情報の秘匿を実装する | TASK-002 |
+| TASK-034 | ✅ | 最終同期状況の参照機能(observability)を実装する | TASK-014 |
+| TASK-035 | ✅ | 任意のin-process定期同期スケジューラーを実装する | TASK-016 |
+| TASK-036 | ✅ | 同期完了通知方式を選定しADRに記録する | TASK-001 |
+| TASK-037 | ✅ | 同期完了通知(serve再起動なし反映)を実装する | TASK-036,TASK-035 |
+| TASK-038 | ✅ | DEBUG時にJSON-RPCを全文出力するtee傍受を実装する | TASK-033,TASK-032 |
+| TASK-039 | ✅ | picocliによるserve/syncのCLIを実装する | TASK-032,TASK-011,TASK-035 |
+| TASK-040 | ✅ | stdioトランスポートの端点間テストを通す | TASK-039,TASK-013 |
+| TASK-041 | ✅ | 組込みサーブレットコンテナーを選定しADRに記録する | TASK-001 |
+| TASK-042 | ✅ | Streamable HTTP(組込みJetty)トランスポートを配線する | TASK-041,TASK-039,TASK-032 |
+| TASK-043 | ✅ | Streamable HTTPトランスポートの端点間テストを通す | TASK-042,TASK-013 |
+| TASK-044 | ✅ | standalone実行可能成果物(uber-jar)をビルドする | TASK-039 |
+| TASK-045 | ✅ | DEBUG時出力/INFO時非出力を端点間テストで検証する | TASK-038,TASK-040 |
+| TASK-046 | ✅ | spring-boot-starterの自動構成でcoreを登録する | TASK-032 |
+| TASK-047 | ✅ | spring-boot-starterの自動構成をtest sliceで検証する | TASK-046 |
+| TASK-048 | ✅ | 性能スモーク(規模前提下のsearch_code 2秒未満)を実施する | TASK-040,TASK-043 |
+| TASK-049 | ✅ | GitHub Actions CIでビルド/テスト/lintを強制する | TASK-002 |
+| TASK-050 | ✅ | READMEと導入/運用ドキュメントを整備する | TASK-044,TASK-046 |
+| TASK-051 | ✅ | 仕様適合チェックと要件カバレッジの自己レビューを実施する | TASK-045,TASK-047,TASK-048,TASK-050 |
 
 ## タスク詳細（補足が必要な場合のみ）
 
