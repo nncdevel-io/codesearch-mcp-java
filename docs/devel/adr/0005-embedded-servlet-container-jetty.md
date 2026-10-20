@@ -28,7 +28,7 @@ Accepted（2026-06-29）
   登録できる。
 - `ServerConnector` のポートに 0 を指定すると ephemeral ポートが割り当てられ、
   端点間テストで実ポートを取得して接続できる（`HttpEndToEndTest` で検証済み）。
-- 検証済みバージョン: Jetty 12.0.16。
+- 検証済みバージョン: Jetty 12.1.12。
 
 ## 帰結
 

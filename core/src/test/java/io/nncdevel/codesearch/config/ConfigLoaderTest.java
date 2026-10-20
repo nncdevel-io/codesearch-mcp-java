@@ -24,10 +24,7 @@ class ConfigLoaderTest {
 
     @Test
     void loadsValidRepositories(@TempDir Path dir) throws IOException {
-        Path p = write(
-                dir,
-                "repos.json",
-                """
+        Path p = write(dir, "repos.json", """
             {
               "workspace_root": "/var/ws",
               "secrets": "/etc/secrets.json",
@@ -59,10 +56,7 @@ class ConfigLoaderTest {
 
     @Test
     void defaultsRefreshWhenAbsent(@TempDir Path dir) throws IOException {
-        Path p = write(
-                dir,
-                "repos.json",
-                """
+        Path p = write(dir, "repos.json", """
             {"repositories": [
               {"id": "r1", "remote": "x", "branch": "main",
                "hosting": "gitlab", "hosting_base_url": "https://gitlab.com/x/r1"}
@@ -76,10 +70,7 @@ class ConfigLoaderTest {
 
     @Test
     void rejectsMissingRequiredField(@TempDir Path dir) throws IOException {
-        Path p = write(
-                dir,
-                "repos.json",
-                """
+        Path p = write(dir, "repos.json", """
             {"repositories": [
               {"id": "r1", "branch": "main", "hosting": "github", "hosting_base_url": "u"}
             ]}
@@ -89,10 +80,7 @@ class ConfigLoaderTest {
 
     @Test
     void rejectsDuplicateId(@TempDir Path dir) throws IOException {
-        Path p = write(
-                dir,
-                "repos.json",
-                """
+        Path p = write(dir, "repos.json", """
             {"repositories": [
               {"id": "dup", "remote": "x", "branch": "main", "hosting": "github", "hosting_base_url": "u"},
               {"id": "dup", "remote": "y", "branch": "main", "hosting": "github", "hosting_base_url": "u"}
@@ -104,10 +92,7 @@ class ConfigLoaderTest {
 
     @Test
     void rejectsInvalidHosting(@TempDir Path dir) throws IOException {
-        Path p = write(
-                dir,
-                "repos.json",
-                """
+        Path p = write(dir, "repos.json", """
             {"repositories": [
               {"id": "r1", "remote": "x", "branch": "main", "hosting": "svn", "hosting_base_url": "u"}
             ]}
@@ -117,10 +102,7 @@ class ConfigLoaderTest {
 
     @Test
     void rejectsLowRefresh(@TempDir Path dir) throws IOException {
-        Path p = write(
-                dir,
-                "repos.json",
-                """
+        Path p = write(dir, "repos.json", """
             {"repositories": [
               {"id": "r1", "remote": "x", "branch": "main", "hosting": "github",
                "hosting_base_url": "u", "refresh_interval_seconds": 10}
@@ -143,10 +125,7 @@ class ConfigLoaderTest {
 
     @Test
     void loadsTokenSecret(@TempDir Path dir) throws IOException {
-        Path p = write(
-                dir,
-                "secrets.json",
-                """
+        Path p = write(dir, "secrets.json", """
             {"secrets": {"main-app": {"auth_type": "token", "token": "ghp_xxx"}}}
             """);
         restrictPermissions(p);
@@ -197,10 +176,7 @@ class ConfigLoaderTest {
     @Test
     void serverConfigDefaultsAndParse(@TempDir Path dir) throws IOException {
         assertEquals(ServerConfig.defaults(), ConfigLoader.loadServerConfig(null));
-        Path p = write(
-                dir,
-                "server.json",
-                """
+        Path p = write(dir, "server.json", """
             {"transport": "http", "host": "0.0.0.0", "port": 9000, "enable_scheduler": true}
             """);
         ServerConfig cfg = ConfigLoader.loadServerConfig(p);

@@ -10,8 +10,7 @@ class RipgrepJsonTest {
 
     @Test
     void parsesSingleMatch() {
-        String json =
-                """
+        String json = """
         {"type":"begin","data":{"path":{"text":"src/A.java"}}}
         {"type":"match","data":{"path":{"text":"src/A.java"},"lines":{"text":"class A {}\\n"},"line_number":42}}
         {"type":"end","data":{"path":{"text":"src/A.java"}}}
@@ -29,8 +28,7 @@ class RipgrepJsonTest {
 
     @Test
     void associatesContextByProximity() {
-        String json =
-                """
+        String json = """
         {"type":"context","data":{"path":{"text":"f.txt"},"lines":{"text":"before\\n"},"line_number":9}}
         {"type":"match","data":{"path":{"text":"f.txt"},"lines":{"text":"hit\\n"},"line_number":10}}
         {"type":"context","data":{"path":{"text":"f.txt"},"lines":{"text":"after\\n"},"line_number":11}}

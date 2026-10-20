@@ -1,25 +1,66 @@
 # codesearch-mcp-java
 
-Git 管理されたソースコードを **チャット AI から直接 grep する** ための
-Model Context Protocol（MCP）サーバーの Java 実装。`ripgrep` と
-`git ls-files` をバックエンドに、ベクトル検索なしで高速・正確・引用可能な
-コード検索を提供する。
+```text
+┌─────────────────────────────────────────────────────────────────────┐
+│                                                                     │
+│   $ rg /pattern/  ─►  ☕ JVM  ─►  📡 MCP  ─►  🤖 "Foo.java:142 …"   │
+│                                                                     │
+│        git  ×  ripgrep  ×  Java 21  ×  Model Context Protocol       │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+> **エージェントに「人間が grep でコードを追う手順」をそのまま渡す MCP サーバーの Java 版。**
+>
+> ベクトル検索なし。埋め込みインデックスなし。
+> 引用は Git URL（行アンカー付き）でそのまま貼り付けられる。
+
+[![verify](https://github.com/nncdevel-io/codesearch-mcp-java/actions/workflows/verify.yml/badge.svg)](https://github.com/nncdevel-io/codesearch-mcp-java/actions/workflows/verify.yml)
+[![version](https://img.shields.io/badge/version-0.1.0--SNAPSHOT-blue.svg)](pom.xml)
+[![Java 21+](https://img.shields.io/badge/java-21%2B-orange.svg)](https://openjdk.org/projects/jdk/21/)
+[![Spring Boot 4.1](https://img.shields.io/badge/Spring%20Boot-4.1-6db33f.svg)](https://spring.io/projects/spring-boot)
+[![MCP 2025-11-25](https://img.shields.io/badge/MCP-2025--11--25-blueviolet.svg)](https://modelcontextprotocol.io/specification/2025-11-25)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+
+> [!IMPORTANT]
+> **🚧 MCP 仕様 2026-07-28 には未対応（2026-10-20 時点）**
+>
+> 本サーバーが扱える MCP プロトコルバージョンは **2025-11-25 まで**。
+> プロトコルの実装を MCP Java SDK に任せており、リリース済みの SDK（2.1.0）が
+> 2025-11-25 までしか対応していないためである。
+>
+> 現行仕様の [2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28) は、
+> `initialize` ハンドシェイクを廃止し、リクエストごとにバージョンを宣言する方式に変わった。
+> 仕様の互換性の表では、本サーバーは「レガシー」側に当たり、クライアントによって次のように結果が分かれる。
+>
+> | クライアント | 本サーバーとの接続 |
+> | --- | --- |
+> | 2025-11-25 以前に対応 | ✅ つながる |
+> | 新旧両方に対応 | ✅ つながる（クライアントが旧方式へ切り替える） |
+> | 2026-07-28 のみに対応 | ❌ つながらない |
+>
+> SDK 側では 2026-07-28 対応が main ブランチに取り込まれている。
+> 対応版の SDK がリリースされたら追随する。
+>
+> なお SDK 2.1.0 のリリースノートによると、Streamable HTTP では 2024-11-05 が対象外になった。
 
 本実装は Python 版
 （[codesearch-mcp-python](https://github.com/nncdevel-io/codesearch-mcp-python)）
 **とは独立した別個のプロダクト**であり、同じ外部仕様を意図的に共有するが、
 両者の間に実行時・設定・バージョンの結合や互換保証はない。
 
-## 特徴
+---
 
-- 埋め込み・ベクトル DB なし（`ripgrep` ＋ `git ls-files`）
-- 結果は Git URL（行アンカー付き）で即引用できる（GitHub/GitLab/Bitbucket/Gitea）
-- per-repo 分離 — 1 リポジトリの取得失敗が他に波及しない
-- 同期はリクエストパスから分離（`sync` CLI ＋ 任意スケジューラー）
-- stdio と Streamable HTTP の両トランスポート
-- **2 つの利用形態**: 単独利用（CLI）と Spring Boot 統合（スターター）
+## 🚀 特徴
 
-## 公開ツール（5）＋ Resource
+- 🧠 **埋め込み・ベクトル DB なし** — `ripgrep` ＋ `git ls-files` だけで速く、正確に、引用できる
+- 🔗 **結果は Git URL（行アンカー付き）でそのまま引用できる** — GitHub / GitLab / Bitbucket / Gitea
+- 🛡️ **リポジトリごとに分離** — 1 リポジトリの取得失敗が他に波及しない
+- ⏱️ **同期はリクエストの処理から分離** — `sync` CLI ＋ 任意のスケジューラー
+- 🔌 **stdio と Streamable HTTP の両トランスポート**
+- 🧩 **2 つの利用形態** — 単独利用（CLI）と Spring Boot 統合（スターター）
+
+## 🧰 公開ツール（5）＋ Resource
 
 | ツール | 何ができる |
 | --- | --- |
@@ -32,7 +73,7 @@ Model Context Protocol（MCP）サーバーの Java 実装。`ripgrep` と
 設定済みリポジトリは MCP の Resource（`codesearch://repo/{id}`）としても広告される。
 完全な入出力スキーマは [`docs/devel/specs/spec.md`](docs/devel/specs/spec.md) を参照。
 
-## モジュール構成
+## 📦 モジュール構成
 
 | モジュール | 役割 |
 | --- | --- |
@@ -40,13 +81,13 @@ Model Context Protocol（MCP）サーバーの Java 実装。`ripgrep` と
 | `codesearch-mcp-standalone` | 単独利用。CLI ＋ 組込み Jetty ＋ stdio |
 | `codesearch-mcp-spring-boot-starter` | Spring Boot 統合（自動構成） |
 
-## 前提
+## ✅ 前提
 
-- Java 21（LTS）
+- Java 21 以上（CI では 21 と 25 で検証）
 - `git` と `ripgrep`（`rg`）が PATH 上に存在すること
 - Linux または macOS
 
-## 単独利用（standalone）
+## 🖥️ 単独利用（standalone）
 
 ### 1. ビルド
 
@@ -95,7 +136,7 @@ java -jar standalone/target/codesearch-mcp-standalone-*.jar sync --repos config/
 cron / systemd timer から `sync` を起動すれば、再起動なしで状態が反映される。
 常駐スケジューラーを使う場合は `serve --enable-scheduler` を指定する。
 
-## Spring Boot 統合
+## 🌱 Spring Boot 統合
 
 依存を追加し、`codesearch.mcp.repos-path` を設定すると、自動構成が MCP サーバーを
 サーブレットコンテナーへ登録する。
@@ -115,13 +156,13 @@ codesearch:
     endpoint: /mcp        # 任意（既定 /mcp）
 ```
 
-## 開発・検証
+## 🛠️ 開発・検証
 
 ```bash
 ./mvnw verify   # テスト ＋ Spotless ＋ Javadoc doclint（全モジュール）
 ```
 
-## ドキュメント
+## 📚 ドキュメント
 
 - [`docs/devel/requirements/requirements.md`](docs/devel/requirements/requirements.md) — 要件
 - [`docs/devel/specs/spec.md`](docs/devel/specs/spec.md) — 外部仕様
@@ -129,6 +170,6 @@ codesearch:
 - [`docs/devel/adr`](docs/devel/adr) — 設計判断の記録
 - [`docs/devel/operation`](docs/devel/operation) — 運用
 
-## ライセンス
+## 📄 ライセンス
 
 MIT

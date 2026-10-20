@@ -21,9 +21,7 @@ class StdioServerBuildTest {
         Path ws = base.resolve("ws");
         Files.createDirectories(ws);
         Path repos = base.resolve("repos.json");
-        Files.writeString(
-                repos,
-                """
+        Files.writeString(repos, """
         {
           "workspace_root": "%s",
           "repositories": [
@@ -31,8 +29,7 @@ class StdioServerBuildTest {
              "hosting_base_url": "https://github.com/x/r1"}
           ]
         }
-        """
-                        .formatted(ws.toString().replace("\\", "\\\\")));
+        """.formatted(ws.toString().replace("\\", "\\\\")));
 
         try (ServerComponents components = ServerComponents.load(repos, null, ws)) {
             McpSyncServer server = components.buildStdioServer();

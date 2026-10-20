@@ -28,7 +28,7 @@ class SyncSchedulerTest {
         RepositoryManager manager = new RepositoryManager(ws, List.of(repo), SecretsFile.empty());
 
         try (SyncScheduler scheduler = new SyncScheduler(
-                new GitSync(new CommandRunner()), manager, StructuredLogger.forCategory("test.sched"))) {
+                new GitSync(new CommandRunner()), manager, StructuredLogger.forCategory("test.scheduler"))) {
             scheduler.runSync(repo);
         }
 
@@ -45,7 +45,7 @@ class SyncSchedulerTest {
                 "r1", remote.toString(), "main", Hosting.GITHUB, "https://github.com/x/r1", 3600, List.of(), null);
         RepositoryManager manager = new RepositoryManager(ws, List.of(repo), SecretsFile.empty());
         SyncScheduler scheduler = new SyncScheduler(
-                new GitSync(new CommandRunner()), manager, StructuredLogger.forCategory("test.sched"));
+                new GitSync(new CommandRunner()), manager, StructuredLogger.forCategory("test.scheduler"));
         scheduler.start();
         scheduler.close();
     }

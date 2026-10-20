@@ -21,9 +21,7 @@ class CodesearchMcpAutoConfigurationTest {
         Path ws = dir.resolve("ws");
         Files.createDirectories(ws);
         Path repos = dir.resolve("repos.json");
-        Files.writeString(
-                repos,
-                """
+        Files.writeString(repos, """
         {
           "workspace_root": "%s",
           "repositories": [
@@ -31,8 +29,7 @@ class CodesearchMcpAutoConfigurationTest {
              "hosting_base_url": "https://github.com/x/r1"}
           ]
         }
-        """
-                        .formatted(ws.toString().replace("\\", "\\\\")));
+        """.formatted(ws.toString().replace("\\", "\\\\")));
         return repos;
     }
 

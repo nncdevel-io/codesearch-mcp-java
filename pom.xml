@@ -24,22 +24,22 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
     <!-- dependency versions -->
-    <mcp.version>2.0.0</mcp.version>
-    <jackson.version>2.18.2</jackson.version>
-    <slf4j.version>2.0.16</slf4j.version>
-    <logback.version>1.5.15</logback.version>
-    <picocli.version>4.7.6</picocli.version>
-    <jetty.version>12.0.16</jetty.version>
-    <spring.boot.version>4.1.0</spring.boot.version>
-    <junit.version>5.11.4</junit.version>
+    <mcp.version>2.1.0</mcp.version>
+    <jackson.version>2.21.5</jackson.version>
+    <slf4j.version>2.0.18</slf4j.version>
+    <logback.version>1.5.38</logback.version>
+    <picocli.version>4.7.7</picocli.version>
+    <jetty.version>12.1.12</jetty.version>
+    <spring.boot.version>4.1.1</spring.boot.version>
+    <junit.version>6.0.3</junit.version>
 
     <!-- plugin versions -->
-    <compiler.version>3.13.0</compiler.version>
-    <surefire.version>3.5.2</surefire.version>
-    <jacoco.version>0.8.12</jacoco.version>
-    <spotless.version>2.44.0</spotless.version>
-    <shade.version>3.6.0</shade.version>
-    <javadoc.version>3.11.2</javadoc.version>
+    <compiler.version>3.16.0</compiler.version>
+    <surefire.version>3.6.0</surefire.version>
+    <jacoco.version>0.8.15</jacoco.version>
+    <spotless.version>3.10.4</spotless.version>
+    <shade.version>3.6.2</shade.version>
+    <javadoc.version>3.12.0</javadoc.version>
   </properties>
 
   <dependencyManagement>

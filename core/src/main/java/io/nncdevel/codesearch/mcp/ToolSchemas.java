@@ -9,8 +9,7 @@ final class ToolSchemas {
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
     /** {@code search_code} input schema. */
-    static final Map<String, Object> SEARCH_CODE = parse(
-            """
+    static final Map<String, Object> SEARCH_CODE = parse("""
           {
             "type": "object",
             "properties": {
@@ -31,8 +30,7 @@ final class ToolSchemas {
           """);
 
     /** {@code list_files} input schema. */
-    static final Map<String, Object> LIST_FILES = parse(
-            """
+    static final Map<String, Object> LIST_FILES = parse("""
           {
             "type": "object",
             "properties": {
@@ -47,8 +45,7 @@ final class ToolSchemas {
           """);
 
     /** {@code list_tree} input schema. */
-    static final Map<String, Object> LIST_TREE = parse(
-            """
+    static final Map<String, Object> LIST_TREE = parse("""
           {
             "type": "object",
             "properties": {
@@ -64,8 +61,7 @@ final class ToolSchemas {
           """);
 
     /** {@code read_file} input schema. */
-    static final Map<String, Object> READ_FILE = parse(
-            """
+    static final Map<String, Object> READ_FILE = parse("""
           {
             "type": "object",
             "properties": {

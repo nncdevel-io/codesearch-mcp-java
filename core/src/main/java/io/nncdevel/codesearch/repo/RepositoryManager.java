@@ -136,7 +136,7 @@ public final class RepositoryManager {
      *
      * @param id the repository id
      * @return the workspace directory of the ready repository
-     * @throws ToolException with {@link ErrorCode#REPO_NOT_FOUND} if unconfigured, or {@link
+     * @throws ToolException with {@link ErrorCode#REPO_NOT_FOUND} if not configured, or {@link
      *     ErrorCode#REPO_NOT_READY} if its initial clone has not completed
      */
     public Path requireReadyWorkspace(String id) {

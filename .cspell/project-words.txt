@@ -1,0 +1,13 @@
+antlr
+assertj
+asyncio
+gitea
+izuno
+jacoco
+mvnw
+nncdevel
+picocli
+snakeyaml
+temurin
+tomlj
+webmvc
